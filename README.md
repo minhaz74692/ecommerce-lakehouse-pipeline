@@ -1,154 +1,92 @@
-# E-Commerce Lakehouse Pipeline
+# E-Commerce Data Pipeline 📊
 
-An end-to-end data engineering pipeline built on **Databricks + Delta Lake**, processing the [Olist Brazilian E-Commerce dataset](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce) through a medallion architecture (Bronze → Silver → Gold).
+> An end-to-end ELT pipeline built on the **medallion architecture** (Bronze → Silver → Gold), using the public Olist Brazilian e-commerce dataset.
+
+![Status](https://img.shields.io/badge/status-in_progress-yellow?style=flat-square)
+![PySpark](https://img.shields.io/badge/PySpark-E25A1C?style=flat-square&logo=apachespark&logoColor=white)
+![Databricks](https://img.shields.io/badge/Databricks-FF3621?style=flat-square&logo=databricks&logoColor=white)
+![Airflow](https://img.shields.io/badge/Airflow-017CEE?style=flat-square&logo=apacheairflow&logoColor=white)
+
+---
+
+## Overview
+
+This project ingests raw e-commerce data, cleans and models it through layered transformations, and serves analytics-ready tables — orchestrated as a scheduled workflow. It's built to demonstrate the core data-engineering loop: **ingest → store → transform → model → orchestrate.**
+
+> ⚠️ **Note:** This is a portfolio project built on the public [Olist dataset](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce). It is for learning and demonstration, not production use.
 
 ---
 
 ## Architecture
 
 ```
-Raw CSVs (Kaggle / Databricks Volume)
-        │
-        ▼
-┌──────────────┐
-│    BRONZE    │  Schema-on-read, as-is ingestion
-│  Delta Lake  │  + _load_timestamp, _source_file lineage columns
-└──────┬───────┘
-       │
-       ▼
-┌──────────────┐
-│    SILVER    │  Deduplicated on PKs (window function)
-│  Delta Lake  │  Type-cast, null-key filtered, standardised dates
-└──────┬───────┘
-       │
-       ▼
-┌──────────────┐
-│     GOLD     │  Star schema — FactSales, DimCustomer (SCD2),
-│  Delta Lake  │  DimProduct, DimDate            [in progress]
-└──────────────┘
+Raw CSVs ──► Bronze ──► Silver ──► Gold ──► Analytics
+            (raw       (cleaned,   (star
+             ingest)    deduped)    schema)
+                                       │
+                          orchestrated by Airflow
 ```
 
-**Stack:** PySpark · Delta Lake · Databricks · Airflow (Docker) · Python
+**Bronze** — raw ingestion into Delta tables, with load metadata (`_load_timestamp`, `_source_file`).
+**Silver** — cleaning, type casting, deduplication on business keys, and conformed structures.
+**Gold** — dimensional star schema (fact + dimension tables) with **SCD Type 2** for historical tracking.
 
 ---
 
-## Repository Structure
+## Tech Stack
+
+| Layer | Tools |
+|---|---|
+| Processing | PySpark, Databricks |
+| Storage | Delta Lake |
+| Orchestration | Apache Airflow (containerized with Docker) |
+| Modeling | Star schema, SCD Type 2 |
+| Language | Python, SQL |
+
+---
+
+## Key Features
+
+- **Medallion architecture** separating raw, cleaned, and serving layers
+- **Idempotent ingestion** with load metadata for traceability
+- **Business-key deduplication** (e.g. `order_id + payment_sequential`) rather than naive row dedup
+- **SCD Type 2** dimensions to preserve historical changes
+- **Star schema** modeling for analytics-friendly queries
+- **Airflow DAG** orchestrating the full Bronze → Silver → Gold flow
+
+---
+
+## Project Structure
 
 ```
 ecommerce-lakehouse-pipeline/
-├── injestion/
-│   ├── bronze_ingestion.ipynb          # Bulk CSV → Bronze Delta tables
-│   └── bronze_ingestion_reviews.ipynb  # Reviews special-case (corrupt-record handling)
-├── transformations/
-│   ├── silver_orders.ipynb
-│   ├── silver.order_items.ipynb
-│   ├── silver.customers.ipynb
-│   ├── silver_products.ipynb
-│   ├── silver_payments.ipynb
-│   └── silver_reviews.ipynb
-├── sql/                                # Analytics queries          [coming — P3]
-├── dags/                               # Airflow DAGs               [coming — P4]
-└── tests/                              # Data-quality checks        [coming — P3]
+├── notebooks/
+│   ├── 01_bronze_ingest.py
+│   ├── 02_silver_clean.py
+│   └── 03_gold_model.py
+├── dags/
+│   └── pipeline_dag.py
+├── data/                # sample / source data references
+└── README.md
 ```
 
 ---
 
-## Dataset
+## Status & Roadmap
 
-**Olist Brazilian E-Commerce** — ~100k orders placed on the Olist marketplace between 2016–2018.
-
-| Source file | Bronze table | Rows |
-|---|---|---|
-| olist_orders_dataset.csv | `bronze.orders` | ~99k |
-| olist_order_items_dataset.csv | `bronze.order_items` | ~113k |
-| olist_customers_dataset.csv | `bronze.customers` | ~99k |
-| olist_products_dataset.csv | `bronze.products` | ~33k |
-| olist_order_payments_dataset.csv | `bronze.payments` | ~104k |
-| olist_order_reviews_dataset.csv | `bronze.reviews` | ~99k |
-
-Raw CSVs are stored in a Databricks Unity Catalog Volume at `/Volumes/workspace/default/e-commerce/`.
+- [x] Bronze ingestion layer
+- [x] Silver cleaning & deduplication
+- [ ] Gold star schema with SCD Type 2
+- [ ] Airflow DAG orchestration
+- [ ] Data quality checks
+- [ ] Documentation & sample queries
 
 ---
 
-## Layers
+## What I Learned
 
-### Bronze — Raw Ingestion
-
-- Reads each CSV with `inferSchema` (schema-on-read; no transformation).
-- Appends `_load_timestamp` (ingestion time) and `_source_file` (Unity Catalog `_metadata.file_path`) for lineage.
-- Reviews CSV required explicit schema + `PERMISSIVE` mode to handle embedded newlines and unescaped quotes.
-- Written to Delta with `overwrite` — deterministic reruns on a static dataset.
-
-### Silver — Cleaned & Typed
-
-Each table goes through the same four-step pattern:
-
-1. **Deduplicate** on the primary key using `row_number()` over a deterministic window (`purchase_timestamp DESC`, `_load_timestamp DESC`). Latest record wins.
-2. **Cast types** — zip codes to `StringType`, timestamps standardised.
-3. **Drop null-key rows** — rows missing the PK or a mandatory FK (e.g. `customer_id` on orders) cannot be joined downstream and are removed.
-4. **Write to Delta** — `overwrite` + `overwriteSchema`.
-
-### Gold — Star Schema *(in progress)*
-
-Planned tables:
-
-| Table | Type | Notes |
-|---|---|---|
-| `gold.fact_sales` | Fact | Grain: one row per order item |
-| `gold.dim_customer` | SCD Type 2 | `effective_date`, `end_date`, `is_current` |
-| `gold.dim_product` | Dimension | |
-| `gold.dim_date` | Dimension | Generated programmatically |
+Building this end to end taught me how the pieces of a real pipeline fit together — why the medallion layers exist, how to deduplicate on business keys without losing legitimate records, and how SCD Type 2 preserves history for accurate point-in-time analytics.
 
 ---
 
-## How to Run
-
-### Prerequisites
-
-- Databricks workspace with Unity Catalog enabled.
-- Olist CSVs uploaded to `/Volumes/workspace/default/e-commerce/`.
-- A cluster with Delta Lake (any Databricks Runtime ≥ 12.x).
-
-### Execution Order
-
-```
-1. injestion/bronze_ingestion.ipynb           # ingest orders, items, customers, products, payments
-2. injestion/bronze_ingestion_reviews.ipynb   # ingest reviews (separate due to CSV quirks)
-3. transformations/silver_orders.ipynb
-4. transformations/silver.order_items.ipynb
-5. transformations/silver.customers.ipynb
-6. transformations/silver_products.ipynb
-7. transformations/silver_payments.ipynb
-8. transformations/silver_reviews.ipynb
-```
-
-Run each notebook against an attached cluster. No configuration changes are needed beyond the volume path in step 1.
-
----
-
-## Engineering Decisions
-
-**Why deduplicate with `row_number()` instead of `dropDuplicates()`?**
-`dropDuplicates()` picks an arbitrary survivor when duplicates exist. `row_number()` with an explicit ordering (latest timestamp) makes the choice deterministic and reproducible across reruns.
-
-**Why drop null-PK rows rather than impute?**
-A row with no `order_id` cannot be deduped, joined, or tracked — it has no identity. Dropping it is the only safe option; imputing a synthetic key would create phantom records.
-
-**Why explicit schema for reviews?**
-The reviews CSV contains free-text comments with embedded newlines and unescaped double-quotes. `inferSchema` crashes on these; an explicit schema with `PERMISSIVE` mode and `_corrupt_record` capture lets us recover the valid ~99k rows while isolating the bad ones.
-
-**Why `overwrite` instead of `MERGE` at this stage?**
-The Olist dataset is static (historical snapshot). `overwrite` keeps reruns simple and idempotent. Incremental `MERGE`-based loading will be introduced in the Airflow orchestration phase (P4) to demonstrate production-grade upsert patterns.
-
----
-
-## Roadmap
-
-| Phase | Status |
-|---|---|
-| P0 — Setup & Foundations | Done |
-| P1 — Bronze & Silver | Done |
-| P2 — Gold / Star Schema | In progress |
-| P3 — SQL Analytics & Data Quality | Upcoming |
-| P4 — Airflow Orchestration (Docker) | Upcoming |
-| P5 — Polish & Documentation | Upcoming |
+*Built by [Minhazul Islam](http://www.linkedin.com/in/minhaz74692) while transitioning into data engineering.*
