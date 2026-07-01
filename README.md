@@ -11,7 +11,6 @@
 ## Architecture
 
 ![Architecture](docs/lakehouse_diagram.png)
-![Architecture](docs/lakehouse_diagram.png)
 
 ---
 
