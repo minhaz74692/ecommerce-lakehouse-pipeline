@@ -1,3 +1,4 @@
 .env
 /airflow/.env
 /airflow/logs
+airflow/config/airflow.cfg
