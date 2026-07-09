@@ -39,9 +39,9 @@ def ecommerce_lakehouse_elt_pipeline():
     fact_sales = databricks_notebook_task(config.fact_sales, config.NOTEBOOKS[config.fact_sales])
 
     # Analytics- SQL 
-    analytics_monthly = databricks_notebook_task(config.monthly_revenue, config.NOTEBOOKS[config.monthly_revenue])
-    analytics_top_products = databricks_notebook_task(config.top_products, config.NOTEBOOKS[config.top_products])
-    analytics_customer_retention = databricks_notebook_task(config.customer_retention_cohort, config.NOTEBOOKS[config.customer_retention_cohort])
+    analytics_monthly = databricks_sql_notebook_task(config.monthly_revenue, config.NOTEBOOKS[config.monthly_revenue], config.WAREHOUSE_ID)
+    analytics_top_products = databricks_sql_notebook_task(config.top_products, config.NOTEBOOKS[config.top_products], config.WAREHOUSE_ID)
+    analytics_customer_retention = databricks_sql_notebook_task(config.customer_retention_cohort, config.NOTEBOOKS[config.customer_retention_cohort], config.WAREHOUSE_ID)
 
 
     # Dependencies expressed as one readable block
@@ -59,6 +59,8 @@ def ecommerce_lakehouse_elt_pipeline():
 
     bronze_ingestion >> silver_tasks >> dq_silver >> dim_tasks >> fact_sales >> analytics_tasks
     bronze_reviews >> silver_reviews
+
+    # analytics_tasks
 
 
 

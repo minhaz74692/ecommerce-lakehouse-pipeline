@@ -1,5 +1,6 @@
 WORKSPACE_ROOT = "/Workspace/Users/minhaz74692@gmail.com/ecommerce-lakehouse-pipeline"
-WAREHOUSE_ID = "7474660081667303"
+WORKSPACE_ID = "7474660081667303"
+WAREHOUSE_ID = "9b3cf3fd2e78a851"
 DATABRICKS_CONNECTION_ID = "databricks_conn_id"
 
 
