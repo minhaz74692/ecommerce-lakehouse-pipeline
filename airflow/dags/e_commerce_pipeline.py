@@ -45,7 +45,7 @@ def ecommerce_lakehouse_elt_pipeline():
 
     # Dependencies expressed as one readable block
     silver_tasks = [silver_customers, silver_orders, silver_order_items,
-                    silver_products, silver_payments]
+                    silver_products, silver_payments, silver_reviews]
     dim_tasks = [dim_customer, dim_product, dim_date]
     analytics_tasks = [analytics_monthly, analytics_top_products, analytics_customer_retention]
 
