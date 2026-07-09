@@ -6,7 +6,6 @@ DATABRICKS_CONNECTION_ID = "databricks_conn_id"
 
 # Bronze ingestion
 bronze_ingestion = "bronze_ingestion"
-bronze_ingestion_reviews = "bronze_ingestion_reviews"
 
 # Silver Transformation
 silver_orders = "silver_orders"
@@ -32,8 +31,7 @@ customer_retention_cohort = "customer_retention_cohort"
 
 
 BRONZE_NOTEBOOKS = {
-    bronze_ingestion: f"{WORKSPACE_ROOT}/injestion/bronze_ingestion",
-    bronze_ingestion_reviews: f"{WORKSPACE_ROOT}/injestion/bronze_ingestion_reviews",
+    bronze_ingestion: f"{WORKSPACE_ROOT}/injestion/bronze_ingestion"
 }
 
 SILVER_NOTEBOOKS = {

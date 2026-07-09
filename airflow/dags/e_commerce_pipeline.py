@@ -19,7 +19,6 @@ from common.databricks_helpers import databricks_notebook_task, databricks_sql_n
 def ecommerce_lakehouse_elt_pipeline():
     # Bronze Ingestion
     bronze_ingestion = databricks_notebook_task(config.bronze_ingestion, config.NOTEBOOKS[config.bronze_ingestion])
-    bronze_reviews = databricks_notebook_task(config.bronze_ingestion_reviews, config.NOTEBOOKS[config.bronze_ingestion_reviews])
 
     # Silver Transformation
     silver_products = databricks_notebook_task(config.silver_products, config.NOTEBOOKS[config.silver_products])
@@ -57,7 +56,7 @@ def ecommerce_lakehouse_elt_pipeline():
     # chain(silver_tasks, dq_silver, dim_tasks, fact_sales, analytics_tasks)
 
     bronze_ingestion >> silver_tasks >> dq_silver >> dim_tasks >> fact_sales >> analytics_tasks
-    bronze_reviews >> silver_reviews
+    
 
 
 
