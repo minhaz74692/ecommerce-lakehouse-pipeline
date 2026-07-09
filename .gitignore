@@ -2,3 +2,7 @@
 /airflow/.env
 /airflow/logs
 airflow/config/airflow.cfg
+
+
+__pycache__/
+*.py[cod]
