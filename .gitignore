@@ -6,3 +6,6 @@ airflow/config/airflow.cfg
 
 __pycache__/
 *.py[cod]
+/dbt/.venv
+
+
