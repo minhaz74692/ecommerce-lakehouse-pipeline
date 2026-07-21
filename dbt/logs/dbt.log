@@ -1,0 +1,121 @@
+[0m20:44:59.254867 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10d5f92b0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10e9fa710>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10e9faad0>]}
+
+
+============================== 20:44:59.281553 | d3d4f6e7-0617-4139-a5ff-53b4b02bbccd ==============================
+[0m20:44:59.281553 [info ] [MainThread]: Running with dbt=1.12.0
+[0m20:44:59.281926 [debug] [MainThread]: running dbt with arguments {'log_path': 'logs', 'cache_selected_only': 'False', 'profiles_dir': '/Users/minhaz74692/.dbt', 'use_experimental_parser': 'False', 'log_format': 'default', 'fail_fast': 'False', 'target_path': 'None', 'invocation_command': 'dbt init', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'use_colors': 'True', 'static_parser': 'True', 'write_json': 'True', 'partial_parse': 'True', 'hints_enabled': 'True', 'maximum_seed_size_mib': '1', 'version_check': 'True', 'empty': 'None', 'introspect': 'True', 'log_cache_events': 'False', 'debug': 'False', 'printer_width': '80', 'no_print': 'None', 'indirect_selection': 'eager', 'warn_error': 'None', 'quiet': 'False', 'send_anonymous_usage_stats': 'True'}
+[0m20:45:41.646483 [debug] [MainThread]: Starter project path: /Users/minhaz74692/Documents/Personal/Personal_Projects/Data-Engineering/DE-Project/E-Commerce/ecommerce-lakehouse-pipeline/dbt/.venv/lib/python3.14/site-packages/dbt/include/starter_project
+[0m20:45:41.666554 [info ] [MainThread]: Setting up your profile.
+[0m20:45:53.246192 [debug] [MainThread]: Spark adapter: Setting pyhive.hive logging to ERROR
+[0m20:45:53.246814 [debug] [MainThread]: Spark adapter: Setting thrift.transport logging to ERROR
+[0m20:45:53.246997 [debug] [MainThread]: Spark adapter: Setting thrift.protocol logging to ERROR
+[0m20:47:35.648790 [error] [MainThread]: [[31mERROR[0m]: Encountered an error:
+
+[0m20:47:35.704420 [error] [MainThread]: Traceback (most recent call last):
+  File "/Users/minhaz74692/Documents/Personal/Personal_Projects/Data-Engineering/DE-Project/E-Commerce/ecommerce-lakehouse-pipeline/dbt/.venv/lib/python3.14/site-packages/dbt/cli/requires.py", line 190, in wrapper
+    result, success = func(*args, **kwargs)
+                      ~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/minhaz74692/Documents/Personal/Personal_Projects/Data-Engineering/DE-Project/E-Commerce/ecommerce-lakehouse-pipeline/dbt/.venv/lib/python3.14/site-packages/dbt/cli/requires.py", line 136, in wrapper
+    return func(*args, **kwargs)
+  File "/Users/minhaz74692/Documents/Personal/Personal_Projects/Data-Engineering/DE-Project/E-Commerce/ecommerce-lakehouse-pipeline/dbt/.venv/lib/python3.14/site-packages/dbt/cli/main.py", line 503, in init
+    results = task.run()
+  File "/Users/minhaz74692/Documents/Personal/Personal_Projects/Data-Engineering/DE-Project/E-Commerce/ecommerce-lakehouse-pipeline/dbt/.venv/lib/python3.14/site-packages/dbt/task/init.py", line 360, in run
+    self.setup_profile(profile_name)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/Users/minhaz74692/Documents/Personal/Personal_Projects/Data-Engineering/DE-Project/E-Commerce/ecommerce-lakehouse-pipeline/dbt/.venv/lib/python3.14/site-packages/dbt/task/init.py", line 264, in setup_profile
+    self.create_profile_from_target(adapter, profile_name=profile_name)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/minhaz74692/Documents/Personal/Personal_Projects/Data-Engineering/DE-Project/E-Commerce/ecommerce-lakehouse-pipeline/dbt/.venv/lib/python3.14/site-packages/dbt/task/init.py", line 181, in create_profile_from_target
+    self.create_profile_from_profile_template(profile_template, profile_name)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/minhaz74692/Documents/Personal/Personal_Projects/Data-Engineering/DE-Project/E-Commerce/ecommerce-lakehouse-pipeline/dbt/.venv/lib/python3.14/site-packages/dbt/task/init.py", line 165, in create_profile_from_profile_template
+    target = self.generate_target_from_input(prompts, initial_target)
+  File "/Users/minhaz74692/Documents/Personal/Personal_Projects/Data-Engineering/DE-Project/E-Commerce/ecommerce-lakehouse-pipeline/dbt/.venv/lib/python3.14/site-packages/dbt/task/init.py", line 131, in generate_target_from_input
+    target[key] = click.prompt(
+                  ~~~~~~~~~~~~^
+        text, default=default, hide_input=hide_input, type=type
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/minhaz74692/Documents/Personal/Personal_Projects/Data-Engineering/DE-Project/E-Commerce/ecommerce-lakehouse-pipeline/dbt/.venv/lib/python3.14/site-packages/click/termui.py", line 218, in prompt
+    value = prompt_func(prompt)
+  File "/Users/minhaz74692/Documents/Personal/Personal_Projects/Data-Engineering/DE-Project/E-Commerce/ecommerce-lakehouse-pipeline/dbt/.venv/lib/python3.14/site-packages/click/termui.py", line 201, in prompt_func
+    raise Abort() from None
+click.exceptions.Abort
+
+[0m20:47:35.756834 [debug] [MainThread]: Resource report: {"command_name": "init", "command_success": false, "command_wall_clock_time": 156.56631, "process_in_blocks": "0", "process_kernel_time": 1.188536, "process_mem_max_rss": "242204672", "process_out_blocks": "0", "process_user_time": 4.946655}
+[0m20:47:35.790077 [debug] [MainThread]: Command `dbt init` failed at 20:47:35.789912 after 156.60 seconds
+[0m20:47:35.792487 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x117f150f0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x111566d50>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x117a69ae0>]}
+[0m20:47:35.794542 [debug] [MainThread]: Flushing usage events
+[0m20:47:37.416194 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m20:48:52.308143 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10b724c20>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10cd8a490>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10cd8a990>]}
+
+
+============================== 20:48:52.312844 | 60403674-c4d9-4591-83de-81f36a2a1168 ==============================
+[0m20:48:52.312844 [info ] [MainThread]: Running with dbt=1.12.0
+[0m20:48:52.313238 [debug] [MainThread]: running dbt with arguments {'profiles_dir': '/Users/minhaz74692/.dbt', 'hints_enabled': 'True', 'invocation_command': 'dbt init', 'target_path': 'None', 'log_cache_events': 'False', 'quiet': 'False', 'printer_width': '80', 'log_format': 'default', 'empty': 'None', 'indirect_selection': 'eager', 'write_json': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'partial_parse': 'True', 'static_parser': 'True', 'introspect': 'True', 'use_experimental_parser': 'False', 'log_path': 'logs', 'send_anonymous_usage_stats': 'True', 'maximum_seed_size_mib': '1', 'debug': 'False', 'use_colors': 'True', 'cache_selected_only': 'False', 'warn_error': 'None', 'fail_fast': 'False', 'version_check': 'True', 'no_print': 'None'}
+[0m20:50:06.752195 [debug] [MainThread]: Starter project path: /Users/minhaz74692/Documents/Personal/Personal_Projects/Data-Engineering/DE-Project/E-Commerce/ecommerce-lakehouse-pipeline/dbt/.venv/lib/python3.14/site-packages/dbt/include/starter_project
+[0m20:50:06.773845 [info ] [MainThread]: Setting up your profile.
+[0m20:50:24.298333 [debug] [MainThread]: Spark adapter: Setting pyhive.hive logging to ERROR
+[0m20:50:24.299168 [debug] [MainThread]: Spark adapter: Setting thrift.transport logging to ERROR
+[0m20:50:24.299346 [debug] [MainThread]: Spark adapter: Setting thrift.protocol logging to ERROR
+[0m21:23:55.049532 [info ] [MainThread]: Profile olist_ecommerce written to /Users/minhaz74692/.dbt/profiles.yml using target's profile_template.yml and your supplied values.
+[0m21:23:55.389908 [info ] [MainThread]: Running dbt debug to validate the project...
+[0m21:23:55.420702 [info ] [MainThread]: dbt version: 1.12.0
+[0m21:23:55.422565 [info ] [MainThread]: python version: 3.14.2
+[0m21:23:55.422753 [info ] [MainThread]: python path: /Users/minhaz74692/Documents/Personal/Personal_Projects/Data-Engineering/DE-Project/E-Commerce/ecommerce-lakehouse-pipeline/dbt/.venv/bin/python3
+[0m21:23:55.424215 [info ] [MainThread]: os info: macOS-26.3-arm64-arm-64bit-Mach-O
+[0m21:23:55.863365 [info ] [MainThread]: Using profiles dir at /Users/minhaz74692/.dbt
+[0m21:23:55.864567 [info ] [MainThread]: Using profiles.yml file at /Users/minhaz74692/.dbt/profiles.yml
+[0m21:23:55.864846 [info ] [MainThread]: Using dbt_project.yml file at /Users/minhaz74692/Documents/Personal/Personal_Projects/Data-Engineering/DE-Project/E-Commerce/ecommerce-lakehouse-pipeline/dbt/olist_ecommerce/dbt_project.yml
+[0m21:23:55.865266 [info ] [MainThread]: adapter type: databricks
+[0m21:23:55.865735 [info ] [MainThread]: adapter version: 1.10.9
+[0m21:23:56.003574 [info ] [MainThread]: Configuration:
+[0m21:23:56.004025 [info ] [MainThread]:   profiles.yml file [[32mOK found and valid[0m]
+[0m21:23:56.004206 [info ] [MainThread]:   dbt_project.yml file [[32mOK found and valid[0m]
+[0m21:23:56.004372 [info ] [MainThread]: Required dependencies:
+[0m21:23:56.005693 [debug] [MainThread]: Executing "git --help"
+[0m21:23:56.046418 [debug] [MainThread]: STDOUT: "b"usage: git [-v | --version] [-h | --help] [-C <path>] [-c <name>=<value>]\n           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]\n           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--no-lazy-fetch]\n           [--no-optional-locks] [--no-advice] [--bare] [--git-dir=<path>]\n           [--work-tree=<path>] [--namespace=<name>] [--config-env=<name>=<envvar>]\n           <command> [<args>]\n\nThese are common Git commands used in various situations:\n\nstart a working area (see also: git help tutorial)\n   clone     Clone a repository into a new directory\n   init      Create an empty Git repository or reinitialize an existing one\n\nwork on the current change (see also: git help everyday)\n   add       Add file contents to the index\n   mv        Move or rename a file, a directory, or a symlink\n   restore   Restore working tree files\n   rm        Remove files from the working tree and from the index\n\nexamine the history and state (see also: git help revisions)\n   bisect    Use binary search to find the commit that introduced a bug\n   diff      Show changes between commits, commit and working tree, etc\n   grep      Print lines matching a pattern\n   log       Show commit logs\n   show      Show various types of objects\n   status    Show the working tree status\n\ngrow, mark and tweak your common history\n   branch    List, create, or delete branches\n   commit    Record changes to the repository\n   merge     Join two or more development histories together\n   rebase    Reapply commits on top of another base tip\n   reset     Reset current HEAD to the specified state\n   switch    Switch branches\n   tag       Create, list, delete or verify a tag object signed with GPG\n\ncollaborate (see also: git help workflows)\n   fetch     Download objects and refs from another repository\n   pull      Fetch from and integrate with another repository or a local branch\n   push      Update remote refs along with associated objects\n\n'git help -a' and 'git help -g' list available subcommands and some\nconcept guides. See 'git help <command>' or 'git help <concept>'\nto read about a specific subcommand or concept.\nSee 'git help git' for an overview of the system.\n""
+[0m21:23:56.047039 [debug] [MainThread]: STDERR: "b''"
+[0m21:23:56.048970 [info ] [MainThread]:  - git [[32mOK found[0m]
+
+[0m21:23:56.049229 [info ] [MainThread]: Connection:
+[0m21:23:56.049453 [info ] [MainThread]:   host: dbc-cd907581-a805.cloud.databricks.com
+[0m21:23:56.049619 [info ] [MainThread]:   http_path: /sql/1.0/warehouses/9b3cf3fd2e78a851
+[0m21:23:56.049822 [info ] [MainThread]:   catalog: ecommerce_lakehouse
+[0m21:23:56.049975 [info ] [MainThread]:   schema: default
+[0m21:23:56.054224 [info ] [MainThread]: Registered adapter: databricks=1.10.9
+[0m21:23:56.870608 [debug] [MainThread]: Databricks adapter: DatabricksDBTConnection(session-id=None, name=debug) - Creating connection
+[0m21:23:56.872301 [debug] [MainThread]: Acquiring new databricks connection 'debug'
+[0m21:23:56.873088 [debug] [MainThread]: Using databricks connection "debug"
+[0m21:23:56.874804 [debug] [MainThread]: On debug: select 1 as id
+[0m21:23:56.875257 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m21:24:00.142327 [debug] [MainThread]: Databricks adapter: Connection(session-id=01f18518-31ab-1ec0-adb5-1bb86e4a9cb0) - Created
+[0m21:24:11.378767 [debug] [MainThread]: SQL status: OK in 14.500 seconds
+[0m21:24:11.389991 [debug] [MainThread]: Databricks adapter: Cursor(session-id=01f18518-31ab-1ec0-adb5-1bb86e4a9cb0, command-id=01f18518-32d3-14b7-a2a4-c05bd9ac1907) - Closing
+[0m21:24:11.780962 [debug] [MainThread]: On debug: Close
+[0m21:24:11.781598 [debug] [MainThread]: Databricks adapter: Connection(session-id=01f18518-31ab-1ec0-adb5-1bb86e4a9cb0) - Closing
+[0m21:24:12.122324 [info ] [MainThread]:   Connection test: [[32mOK connection ok[0m]
+
+[0m21:24:12.122915 [info ] [MainThread]: [32mAll checks passed![0m
+[0m21:24:12.125338 [info ] [MainThread]: Your new dbt project "olist_ecommerce" was created!
+Initialized new project in /Users/minhaz74692/Documents/Personal/Personal_Projects/Data-Engineering/DE-Project/E-Commerce/ecommerce-lakehouse-pipeline/dbt/olist_ecommerce/olist_ecommerce
+
+For more information on how to configure the profiles.yml file,
+please consult the dbt documentation here:
+
+  https://docs.getdbt.com/docs/configure-your-profile
+
+One more thing:
+
+Need help? Don't hesitate to reach out to us via GitHub issues or on Slack:
+
+  https://community.getdbt.com/
+
+Happy modeling!
+
+[0m21:24:12.135292 [debug] [MainThread]: Resource report: {"command_name": "init", "command_success": true, "command_wall_clock_time": 2119.9268, "process_in_blocks": "0", "process_kernel_time": 0.817133, "process_mem_max_rss": "248233984", "process_out_blocks": "0", "process_user_time": 1.804038}
+[0m21:24:12.141956 [debug] [MainThread]: Command `dbt init` succeeded at 21:24:12.139279 after 2119.93 seconds
+[0m21:24:12.145648 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10cbc9e00>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x115a37890>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x115af0380>]}
+[0m21:24:12.148054 [debug] [MainThread]: Flushing usage events
+[0m21:24:13.725786 [debug] [MainThread]: An error was encountered while trying to flush usage events
