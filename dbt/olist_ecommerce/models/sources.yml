@@ -1,0 +1,11 @@
+sources: 
+    - name: source
+      database: '{{target.catalog}}'
+      schema: bronze
+      tables: 
+        - name: customers
+        - name: order_items
+        - name: orders
+        - name: payments
+        - name: products
+        - name: reviews

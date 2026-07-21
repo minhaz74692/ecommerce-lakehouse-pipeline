@@ -7,5 +7,6 @@ airflow/config/airflow.cfg
 __pycache__/
 *.py[cod]
 /dbt/.venv
+/dbt/olist_ecommerce/profiles.yml
 
 

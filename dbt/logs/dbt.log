@@ -119,3 +119,115 @@ Happy modeling!
 [0m21:24:12.145648 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10cbc9e00>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x115a37890>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x115af0380>]}
 [0m21:24:12.148054 [debug] [MainThread]: Flushing usage events
 [0m21:24:13.725786 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m23:01:01.523225 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10d2c4c20>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10e982490>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10e982990>]}
+
+
+============================== 23:01:01.528613 | 10297a78-a752-4267-b01a-337baea360ab ==============================
+[0m23:01:01.528613 [info ] [MainThread]: Running with dbt=1.12.0
+[0m23:01:01.528985 [debug] [MainThread]: running dbt with arguments {'use_experimental_parser': 'False', 'empty': 'False', 'introspect': 'True', 'static_parser': 'True', 'no_print': 'None', 'target_path': 'None', 'fail_fast': 'False', 'partial_parse': 'True', 'log_format': 'default', 'hints_enabled': 'True', 'printer_width': '80', 'invocation_command': 'dbt run', 'version_check': 'True', 'write_json': 'True', 'log_path': 'logs', 'cache_selected_only': 'False', 'indirect_selection': 'eager', 'quiet': 'False', 'profiles_dir': '/Users/minhaz74692/.dbt', 'warn_error': 'None', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'use_colors': 'True', 'send_anonymous_usage_stats': 'True', 'debug': 'False', 'maximum_seed_size_mib': '1', 'log_cache_events': 'False'}
+[0m23:01:01.529540 [error] [MainThread]: [[31mERROR[0m]: Encountered an error:
+Runtime Error
+  No dbt_project.yml found at expected path /Users/minhaz74692/Documents/Personal/Personal_Projects/Data-Engineering/DE-Project/E-Commerce/ecommerce-lakehouse-pipeline/dbt/dbt_project.yml
+  Verify that each entry within packages.yml (and their transitive dependencies) contains a file named dbt_project.yml
+  
+[0m23:01:01.532486 [debug] [MainThread]: Resource report: {"command_name": "run", "command_success": false, "command_wall_clock_time": 0.07146654, "process_in_blocks": "0", "process_kernel_time": 0.217358, "process_mem_max_rss": "124354560", "process_out_blocks": "0", "process_user_time": 0.82629}
+[0m23:01:01.532776 [debug] [MainThread]: Command `dbt run` failed at 23:01:01.532714 after 0.07 seconds
+[0m23:01:01.532970 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10e76b950>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10e9a9910>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10e9aebe0>]}
+[0m23:01:01.533153 [debug] [MainThread]: Flushing usage events
+[0m23:01:03.733586 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m02:13:17.504903 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1094c5670>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x109432ab0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1096265a0>]}
+
+
+============================== 02:13:17.509808 | 59e5ebe3-079c-4681-b7d6-c17ccc3c6869 ==============================
+[0m02:13:17.509808 [info ] [MainThread]: Running with dbt=1.12.0
+[0m02:13:17.510195 [debug] [MainThread]: running dbt with arguments {'quiet': 'False', 'invocation_command': 'dbt debug', 'target_path': 'None', 'log_path': 'logs', 'empty': 'None', 'use_experimental_parser': 'False', 'write_json': 'True', 'introspect': 'True', 'no_print': 'None', 'use_colors': 'True', 'warn_error': 'None', 'cache_selected_only': 'False', 'hints_enabled': 'True', 'fail_fast': 'False', 'indirect_selection': 'eager', 'printer_width': '80', 'send_anonymous_usage_stats': 'True', 'maximum_seed_size_mib': '1', 'profiles_dir': '/Users/minhaz74692/.dbt', 'debug': 'False', 'static_parser': 'True', 'log_cache_events': 'False', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'log_format': 'default', 'partial_parse': 'True', 'version_check': 'True'}
+[0m02:13:17.522495 [info ] [MainThread]: dbt version: 1.12.0
+[0m02:13:17.522752 [info ] [MainThread]: python version: 3.12.9
+[0m02:13:17.522912 [info ] [MainThread]: python path: /Users/minhaz74692/Documents/Personal/Personal_Projects/Data-Engineering/DE-Project/E-Commerce/ecommerce-lakehouse-pipeline/dbt/.venv/bin/python
+[0m02:13:17.523061 [info ] [MainThread]: os info: macOS-26.3-arm64-arm-64bit
+[0m02:13:19.616449 [debug] [MainThread]: Spark adapter: Setting pyhive.hive logging to ERROR
+[0m02:13:19.616824 [debug] [MainThread]: Spark adapter: Setting thrift.transport logging to ERROR
+[0m02:13:19.616988 [debug] [MainThread]: Spark adapter: Setting thrift.protocol logging to ERROR
+[0m02:13:50.044335 [info ] [MainThread]: Using profiles dir at /Users/minhaz74692/.dbt
+[0m02:13:50.045889 [info ] [MainThread]: Using profiles.yml file at /Users/minhaz74692/.dbt/profiles.yml
+[0m02:13:50.046092 [info ] [MainThread]: Using dbt_project.yml file at /Users/minhaz74692/Documents/Personal/Personal_Projects/Data-Engineering/DE-Project/E-Commerce/ecommerce-lakehouse-pipeline/dbt/dbt_project.yml
+[0m02:13:50.046567 [error] [MainThread]: [[31mERROR[0m]: Encountered an error:
+Internal Error
+  Profile should not be None if loading profile completed
+[0m02:13:50.065858 [debug] [MainThread]: Resource report: {"command_name": "debug", "command_success": false, "command_wall_clock_time": 32.65088, "process_in_blocks": "0", "process_kernel_time": 0.813894, "process_mem_max_rss": "194576384", "process_out_blocks": "0", "process_user_time": 3.150428}
+[0m02:13:50.066707 [debug] [MainThread]: Command `dbt debug` failed at 02:13:50.066611 after 32.65 seconds
+[0m02:13:50.067094 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1093f7770>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10ffefef0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10e698f80>]}
+[0m02:13:50.067412 [debug] [MainThread]: Flushing usage events
+[0m02:13:52.198787 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m02:14:58.129045 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10ae7cf80>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10bffe900>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10bffe420>]}
+
+
+============================== 02:14:58.136676 | b7dc7669-14e4-4301-906d-63ab5334bc2f ==============================
+[0m02:14:58.136676 [info ] [MainThread]: Running with dbt=1.12.0
+[0m02:14:58.137435 [debug] [MainThread]: running dbt with arguments {'send_anonymous_usage_stats': 'True', 'write_json': 'True', 'cache_selected_only': 'False', 'use_experimental_parser': 'False', 'log_format': 'default', 'log_cache_events': 'False', 'introspect': 'True', 'static_parser': 'True', 'hints_enabled': 'True', 'quiet': 'False', 'version_check': 'True', 'log_path': 'logs', 'no_print': 'None', 'warn_error': 'None', 'empty': 'None', 'fail_fast': 'False', 'printer_width': '80', 'target_path': 'None', 'use_colors': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'maximum_seed_size_mib': '1', 'invocation_command': 'dbt debug', 'debug': 'False', 'indirect_selection': 'eager', 'partial_parse': 'True', 'profiles_dir': '/Users/minhaz74692/.dbt'}
+[0m02:14:58.172272 [info ] [MainThread]: dbt version: 1.12.0
+[0m02:14:58.174412 [info ] [MainThread]: python version: 3.12.9
+[0m02:14:58.175073 [info ] [MainThread]: python path: /Users/minhaz74692/Documents/Personal/Personal_Projects/Data-Engineering/DE-Project/E-Commerce/ecommerce-lakehouse-pipeline/dbt/.venv/bin/python
+[0m02:14:58.175324 [info ] [MainThread]: os info: macOS-26.3-arm64-arm-64bit
+[0m02:14:58.833965 [debug] [MainThread]: Spark adapter: Setting pyhive.hive logging to ERROR
+[0m02:14:58.834815 [debug] [MainThread]: Spark adapter: Setting thrift.transport logging to ERROR
+[0m02:14:58.835048 [debug] [MainThread]: Spark adapter: Setting thrift.protocol logging to ERROR
+[0m02:15:00.227956 [info ] [MainThread]: Using profiles dir at /Users/minhaz74692/.dbt
+[0m02:15:00.228609 [info ] [MainThread]: Using profiles.yml file at /Users/minhaz74692/.dbt/profiles.yml
+[0m02:15:00.228927 [info ] [MainThread]: Using dbt_project.yml file at /Users/minhaz74692/Documents/Personal/Personal_Projects/Data-Engineering/DE-Project/E-Commerce/ecommerce-lakehouse-pipeline/dbt/dbt_project.yml
+[0m02:15:00.229498 [error] [MainThread]: [[31mERROR[0m]: Encountered an error:
+Internal Error
+  Profile should not be None if loading profile completed
+[0m02:15:00.237180 [debug] [MainThread]: Resource report: {"command_name": "debug", "command_success": false, "command_wall_clock_time": 2.1682756, "process_in_blocks": "0", "process_kernel_time": 0.518282, "process_mem_max_rss": "211648512", "process_out_blocks": "0", "process_user_time": 1.817164}
+[0m02:15:00.238074 [debug] [MainThread]: Command `dbt debug` failed at 02:15:00.237982 after 2.17 seconds
+[0m02:15:00.239283 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x102be2d50>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1103456a0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1138f8170>]}
+[0m02:15:00.239688 [debug] [MainThread]: Flushing usage events
+[0m02:15:02.134310 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m02:17:34.318570 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10dc52cc0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10dccaa20>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10dcca600>]}
+
+
+============================== 02:17:34.324191 | 97778e82-387f-44e4-93a6-5a1b069064c1 ==============================
+[0m02:17:34.324191 [info ] [MainThread]: Running with dbt=1.12.0
+[0m02:17:34.324546 [debug] [MainThread]: running dbt with arguments {'no_print': 'None', 'fail_fast': 'False', 'log_cache_events': 'False', 'empty': 'None', 'send_anonymous_usage_stats': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'partial_parse': 'True', 'static_parser': 'True', 'printer_width': '80', 'target_path': 'None', 'profiles_dir': '/Users/minhaz74692/.dbt', 'quiet': 'False', 'warn_error': 'None', 'version_check': 'True', 'use_colors': 'True', 'hints_enabled': 'True', 'debug': 'False', 'use_experimental_parser': 'False', 'write_json': 'True', 'log_path': 'logs', 'indirect_selection': 'eager', 'invocation_command': 'dbt debug', 'cache_selected_only': 'False', 'introspect': 'True', 'log_format': 'default', 'maximum_seed_size_mib': '1'}
+[0m02:17:34.349631 [info ] [MainThread]: dbt version: 1.12.0
+[0m02:17:34.349973 [info ] [MainThread]: python version: 3.12.9
+[0m02:17:34.350165 [info ] [MainThread]: python path: /Users/minhaz74692/Documents/Personal/Personal_Projects/Data-Engineering/DE-Project/E-Commerce/ecommerce-lakehouse-pipeline/dbt/.venv/bin/python
+[0m02:17:34.350326 [info ] [MainThread]: os info: macOS-26.3-arm64-arm-64bit
+[0m02:17:35.001261 [debug] [MainThread]: Spark adapter: Setting pyhive.hive logging to ERROR
+[0m02:17:35.001570 [debug] [MainThread]: Spark adapter: Setting thrift.transport logging to ERROR
+[0m02:17:35.001730 [debug] [MainThread]: Spark adapter: Setting thrift.protocol logging to ERROR
+[0m02:17:36.035644 [info ] [MainThread]: Using profiles dir at /Users/minhaz74692/.dbt
+[0m02:17:36.036026 [info ] [MainThread]: Using profiles.yml file at /Users/minhaz74692/.dbt/profiles.yml
+[0m02:17:36.036203 [info ] [MainThread]: Using dbt_project.yml file at /Users/minhaz74692/Documents/Personal/Personal_Projects/Data-Engineering/DE-Project/E-Commerce/ecommerce-lakehouse-pipeline/dbt/dbt_project.yml
+[0m02:17:36.036439 [error] [MainThread]: [[31mERROR[0m]: Encountered an error:
+Internal Error
+  Profile should not be None if loading profile completed
+[0m02:17:36.040997 [debug] [MainThread]: Resource report: {"command_name": "debug", "command_success": false, "command_wall_clock_time": 1.7912979, "process_in_blocks": "0", "process_kernel_time": 0.374486, "process_mem_max_rss": "223707136", "process_out_blocks": "0", "process_user_time": 1.675734}
+[0m02:17:36.041750 [debug] [MainThread]: Command `dbt debug` failed at 02:17:36.041659 after 1.79 seconds
+[0m02:17:36.042057 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x115aed910>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x115aefef0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1134a6b40>]}
+[0m02:17:36.042334 [debug] [MainThread]: Flushing usage events
+[0m02:17:39.862707 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m02:18:39.871851 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x107792180>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x109a8e930>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x109a8e510>]}
+
+
+============================== 02:18:39.884427 | a1bfae7b-d9db-4b0a-8c19-3b74a26e0b67 ==============================
+[0m02:18:39.884427 [info ] [MainThread]: Running with dbt=1.12.0
+[0m02:18:39.884882 [debug] [MainThread]: running dbt with arguments {'quiet': 'False', 'log_format': 'default', 'partial_parse': 'True', 'write_json': 'True', 'target_path': 'None', 'version_check': 'True', 'debug': 'False', 'log_path': 'logs', 'log_cache_events': 'False', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'printer_width': '80', 'static_parser': 'True', 'warn_error': 'None', 'use_colors': 'True', 'profiles_dir': '/Users/minhaz74692/.dbt', 'cache_selected_only': 'False', 'send_anonymous_usage_stats': 'True', 'empty': 'None', 'indirect_selection': 'eager', 'invocation_command': 'dbt debug', 'use_experimental_parser': 'False', 'introspect': 'True', 'hints_enabled': 'True', 'no_print': 'None', 'maximum_seed_size_mib': '1', 'fail_fast': 'False'}
+[0m02:18:39.908856 [info ] [MainThread]: dbt version: 1.12.0
+[0m02:18:39.909555 [info ] [MainThread]: python version: 3.12.9
+[0m02:18:39.910017 [info ] [MainThread]: python path: /Users/minhaz74692/Documents/Personal/Personal_Projects/Data-Engineering/DE-Project/E-Commerce/ecommerce-lakehouse-pipeline/dbt/.venv/bin/python
+[0m02:18:39.910289 [info ] [MainThread]: os info: macOS-26.3-arm64-arm-64bit
+[0m02:18:40.493610 [debug] [MainThread]: Spark adapter: Setting pyhive.hive logging to ERROR
+[0m02:18:40.493967 [debug] [MainThread]: Spark adapter: Setting thrift.transport logging to ERROR
+[0m02:18:40.494146 [debug] [MainThread]: Spark adapter: Setting thrift.protocol logging to ERROR
+[0m02:18:41.408144 [info ] [MainThread]: Using profiles dir at /Users/minhaz74692/.dbt
+[0m02:18:41.408494 [info ] [MainThread]: Using profiles.yml file at /Users/minhaz74692/.dbt/profiles.yml
+[0m02:18:41.408679 [info ] [MainThread]: Using dbt_project.yml file at /Users/minhaz74692/Documents/Personal/Personal_Projects/Data-Engineering/DE-Project/E-Commerce/ecommerce-lakehouse-pipeline/dbt/dbt_project.yml
+[0m02:18:41.408908 [error] [MainThread]: [[31mERROR[0m]: Encountered an error:
+Internal Error
+  Profile should not be None if loading profile completed
+[0m02:18:41.415437 [debug] [MainThread]: Resource report: {"command_name": "debug", "command_success": false, "command_wall_clock_time": 1.6126403, "process_in_blocks": "0", "process_kernel_time": 0.359893, "process_mem_max_rss": "227934208", "process_out_blocks": "0", "process_user_time": 1.599871}
+[0m02:18:41.416027 [debug] [MainThread]: Command `dbt debug` failed at 02:18:41.415950 after 1.61 seconds
+[0m02:18:41.416266 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x100656d50>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x111575940>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10ca73080>]}
+[0m02:18:41.416496 [debug] [MainThread]: Flushing usage events
+[0m02:18:44.368294 [debug] [MainThread]: An error was encountered while trying to flush usage events

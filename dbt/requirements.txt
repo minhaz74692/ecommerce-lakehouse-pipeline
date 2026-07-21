@@ -1,0 +1,14 @@
+charset-normalizer==3.4.7
+defusedxml==0.7.1
+et_xmlfile==2.0.0
+fonttools==4.63.0
+fpdf2==2.8.7
+lxml==6.1.1
+openpyxl==3.1.5
+pillow==12.2.0
+PyMuPDF==1.27.2.3
+python-pptx==1.0.2
+reportlab==4.5.1
+typing_extensions==4.15.0
+wheel==0.45.1
+xlsxwriter==3.2.9
