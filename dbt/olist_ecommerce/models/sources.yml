@@ -1,11 +1,30 @@
-sources: 
-    - name: source
-      database: '{{target.catalog}}'
+sources:
+    - name: bronze
+      database: '{{ target.catalog }}'
       schema: bronze
-      tables: 
+      tables:
         - name: customers
         - name: order_items
         - name: orders
         - name: payments
         - name: products
         - name: reviews
+
+    - name: silver
+      database: '{{ target.catalog }}'
+      schema: silver
+      tables:
+        - name: customers
+        - name: order_items
+        - name: orders
+        - name: payments
+        - name: products
+        - name: reviews
+
+    - name: gold
+      database: '{{ target.catalog }}'
+      schema: gold
+      tables:
+        - name: dim_customer
+        - name: dim_date
+        - name: dim_products
