@@ -1,0 +1,15 @@
+version: 2
+
+models:
+  - name: silver_customers #  Must match the filename of a model -- including case sensitivity.
+    config:
+      materialized: table
+      schema: silver
+      alias: customers
+    
+    columns:
+      - name: customer_unique_id
+        data_tests:
+          - unique
+          - not_null
+    
