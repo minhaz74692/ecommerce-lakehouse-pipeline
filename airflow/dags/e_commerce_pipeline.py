@@ -1,6 +1,7 @@
 
 from datetime import datetime
 from airflow.sdk import dag, chain, cross_downstream
+from airflow.operators.bash import BashOperator
 import config.ecommerce as config
 from common.databricks_helpers import databricks_notebook_task, databricks_sql_notebook_task
 
@@ -20,11 +21,20 @@ def ecommerce_lakehouse_elt_pipeline():
     # Bronze Ingestion
     bronze_ingestion = databricks_notebook_task(config.bronze_ingestion, config.NOTEBOOKS[config.bronze_ingestion])
 
+    DBT_PROJECT_DIR = "/opt/airflow/dbt/olist_ecommerce"
+
+    dbt_run = BashOperator(
+        task_id="dbt_run",
+        bash_command=f"""
+        cd {DBT_PROJECT_DIR}
+        dbt run --profiles-dir .
+        """
+    )
     # Silver Transformation
     silver_products = databricks_notebook_task(config.silver_products, config.NOTEBOOKS[config.silver_products])
     silver_orders = databricks_notebook_task(config.silver_orders, config.NOTEBOOKS[config.silver_orders])
     silver_order_items = databricks_notebook_task(config.silver_order_items, config.NOTEBOOKS[config.silver_order_items])
-    silver_customers = databricks_notebook_task(config.silver_customers, config.NOTEBOOKS[config.silver_customers])
+    # silver_customers = databricks_notebook_task(config.silver_customers, config.NOTEBOOKS[config.silver_customers])
     silver_payments = databricks_notebook_task(config.silver_payments, config.NOTEBOOKS[config.silver_payments])
     silver_reviews = databricks_notebook_task(config.silver_reviews, config.NOTEBOOKS[config.silver_reviews])
 
@@ -44,7 +54,9 @@ def ecommerce_lakehouse_elt_pipeline():
 
 
     # Dependencies expressed as one readable block
-    silver_tasks = [silver_customers, silver_orders, silver_order_items,
+    # silver_tasks = [silver_customers, silver_orders, silver_order_items,
+    #                 silver_products, silver_payments, silver_reviews]
+    silver_tasks = [dbt_run, silver_orders, silver_order_items,
                     silver_products, silver_payments, silver_reviews]
     dim_tasks = [dim_customer, dim_product, dim_date]
     analytics_tasks = [analytics_monthly, analytics_top_products, analytics_customer_retention]

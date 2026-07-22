@@ -8,5 +8,6 @@ __pycache__/
 *.py[cod]
 /dbt/.venv
 /dbt/olist_ecommerce/profiles.yml
+/dbt/.env
 
 

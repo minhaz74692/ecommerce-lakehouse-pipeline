@@ -1,1 +1,3 @@
 apache-airflow-providers-databricks==7.16.1
+dbt-core>=1.12.0 
+dbt-databricks>=1.10.9
