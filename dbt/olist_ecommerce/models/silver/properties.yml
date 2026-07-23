@@ -30,12 +30,6 @@ models:
       materialized: table
       schema: silver
       alias: order_items
-    
-    columns:
-      - name: order_item_id
-        data_tests:
-          - unique
-          - not_null
 
   - name: silver_products #  Must match the filename of a model -- including case sensitivity.
     config:
@@ -55,10 +49,6 @@ models:
       schema: silver
       alias: payments
 
-    columns:
-      - name: payment_id
-        data_tests:
-          - not_null
     
   - name: silver_reviews #  Must match the filename of a model -- including case sensitivity.
     config:

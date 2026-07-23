@@ -1,0 +1,26 @@
+version: 2
+
+models:
+  - name: dim_date #  Must match the filename of a model -- including case sensitivity.
+    config:
+      materialized: table
+      schema: gold
+      alias: dim_date
+
+  - name: dim_product #  Must match the filename of a model -- including case sensitivity.
+    config:
+      materialized: table
+      schema: gold
+      alias: dim_product
+
+  - name: dim_customer #  Must match the filename of a model -- including case sensitivity.
+    config:
+      materialized: table
+      schema: gold
+      alias: dim_customer
+
+  - name: fact_sales #  Must match the filename of a model -- including case sensitivity.
+    config:
+      materialized: table
+      schema: gold
+      alias: fact_sales
