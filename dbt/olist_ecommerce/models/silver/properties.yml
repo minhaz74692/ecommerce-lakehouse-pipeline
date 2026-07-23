@@ -12,4 +12,63 @@ models:
         data_tests:
           - unique
           - not_null
+
+  - name: silver_orders #  Must match the filename of a model -- including case sensitivity.
+    config:
+      materialized: table
+      schema: silver
+      alias: orders
+    
+    columns:
+      - name: order_id
+        data_tests:
+          - unique
+          - not_null
+
+  - name: silver_order_items #  Must match the filename of a model -- including case sensitivity.
+    config:
+      materialized: table
+      schema: silver
+      alias: order_items
+    
+    columns:
+      - name: order_item_id
+        data_tests:
+          - unique
+          - not_null
+
+  - name: silver_products #  Must match the filename of a model -- including case sensitivity.
+    config:
+      materialized: table
+      schema: silver
+      alias: products
+    
+    columns:
+      - name: product_id
+        data_tests:
+          - unique
+          - not_null
+          
+  - name: silver_payments #  Must match the filename of a model -- including case sensitivity.
+    config:
+      materialized: table
+      schema: silver
+      alias: payments
+
+    columns:
+      - name: payment_id
+        data_tests:
+          - not_null
+    
+  - name: silver_reviews #  Must match the filename of a model -- including case sensitivity.
+    config:
+      materialized: table
+      schema: silver
+      alias: reviews
+    
+    columns:
+      - name: review_id
+        data_tests:
+          - unique
+          - not_null
     

@@ -3,10 +3,10 @@ from datetime import datetime
 from airflow.sdk import dag, chain, cross_downstream
 from airflow.operators.bash import BashOperator
 import config.ecommerce as config
-from common.databricks_helpers import databricks_notebook_task, databricks_sql_notebook_task
+from common.databricks_helpers import databricks_notebook_task, dbt_bash_runs
 
 @dag(
-    dag_id="ecommerce_lakehouse_elt_pipeline",
+    dag_id="ecommerce_lakehouse_elt_pipeline_dbt",
     description="Olist E-Commerce ELT Lakehouse Pipeline With Airflow",
     schedule=None,
     start_date=datetime(2026, 7, 1),
@@ -17,26 +17,17 @@ from common.databricks_helpers import databricks_notebook_task, databricks_sql_n
         "retries": 1,
     },
 )
-def ecommerce_lakehouse_elt_pipeline():
+def ecommerce_lakehouse_elt_pipeline_dbt():
     # Bronze Ingestion
     bronze_ingestion = databricks_notebook_task(config.bronze_ingestion, config.NOTEBOOKS[config.bronze_ingestion])
 
-    DBT_PROJECT_DIR = "/opt/airflow/dbt/olist_ecommerce"
-
-    dbt_run = BashOperator(
-        task_id="dbt_run",
-        bash_command=f"""
-        cd {DBT_PROJECT_DIR}
-        dbt run --profiles-dir .
-        """
-    )
-    # Silver Transformation
-    silver_products = databricks_notebook_task(config.silver_products, config.NOTEBOOKS[config.silver_products])
-    silver_orders = databricks_notebook_task(config.silver_orders, config.NOTEBOOKS[config.silver_orders])
-    silver_order_items = databricks_notebook_task(config.silver_order_items, config.NOTEBOOKS[config.silver_order_items])
-    silver_customers = databricks_notebook_task(config.silver_customers, config.NOTEBOOKS[config.silver_customers])
-    silver_payments = databricks_notebook_task(config.silver_payments, config.NOTEBOOKS[config.silver_payments])
-    silver_reviews = databricks_notebook_task(config.silver_reviews, config.NOTEBOOKS[config.silver_reviews])
+    # DBT SILVER Transformation BashOperator Tasks
+    silver_customers_task = dbt_bash_runs("dbt_silver_customers", "silver_customers")
+    silver_orders_task = dbt_bash_runs("dbt_silver_orders", "silver_orders")
+    silver_order_items_task = dbt_bash_runs("dbt_silver_order_items", "silver_order_items")
+    silver_products_task = dbt_bash_runs("dbt_silver_products", "silver_products")
+    silver_payments_task = dbt_bash_runs("dbt_silver_payments", "silver_payments")
+    silver_reviews_task = dbt_bash_runs("dbt_silver_reviews", "silver_reviews")
 
     #Data Quality(DQ)
     dq_silver = databricks_notebook_task(config.dq_orders, config.NOTEBOOKS[config.dq_orders])
@@ -54,8 +45,7 @@ def ecommerce_lakehouse_elt_pipeline():
 
 
     # Dependencies expressed as one readable block
-    silver_tasks = [silver_customers, silver_orders, silver_order_items,
-                    silver_products, silver_payments, silver_reviews]
+    dbt_silver_tasks = [silver_customers_task, silver_orders_task, silver_order_items_task, silver_products_task, silver_payments_task, silver_reviews_task]
     dim_tasks = [dim_customer, dim_product, dim_date]
     analytics_tasks = [analytics_monthly, analytics_top_products, analytics_customer_retention]
 
@@ -65,11 +55,11 @@ def ecommerce_lakehouse_elt_pipeline():
     # From silver onward, chain() works — no adjacent lists.
     # chain(silver_tasks, dq_silver, dim_tasks, fact_sales, analytics_tasks)
 
-    bronze_ingestion >> silver_tasks >> dq_silver >> dim_tasks >> fact_sales >> analytics_tasks
+    bronze_ingestion >> dbt_silver_tasks >> dq_silver >> dim_tasks >> fact_sales >> analytics_tasks
     
 
 
 
 
 # initilize the dag
-ecommerce_lakehouse_elt_pipeline()
+ecommerce_lakehouse_elt_pipeline_dbt()
