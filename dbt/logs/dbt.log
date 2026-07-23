@@ -231,3 +231,27 @@ Internal Error
 [0m02:18:41.416266 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x100656d50>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x111575940>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10ca73080>]}
 [0m02:18:41.416496 [debug] [MainThread]: Flushing usage events
 [0m02:18:44.368294 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m16:06:18.711801 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10ad16180>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10db828d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10db824e0>]}
+
+
+============================== 16:06:18.716119 | 774464d8-2a3a-4eed-9f62-eb4dd9da40b6 ==============================
+[0m16:06:18.716119 [info ] [MainThread]: Running with dbt=1.12.0
+[0m16:06:18.716592 [debug] [MainThread]: running dbt with arguments {'invocation_command': 'dbt debug', 'no_print': 'None', 'empty': 'None', 'maximum_seed_size_mib': '1', 'send_anonymous_usage_stats': 'True', 'quiet': 'False', 'hints_enabled': 'True', 'printer_width': '80', 'use_experimental_parser': 'False', 'version_check': 'True', 'use_colors': 'True', 'fail_fast': 'False', 'write_json': 'True', 'introspect': 'True', 'target_path': 'None', 'log_cache_events': 'False', 'debug': 'False', 'cache_selected_only': 'False', 'log_path': 'logs', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'profiles_dir': '/Users/minhaz74692/.dbt', 'static_parser': 'True', 'log_format': 'default', 'warn_error': 'None', 'indirect_selection': 'eager', 'partial_parse': 'True'}
+[0m16:06:18.734885 [info ] [MainThread]: dbt version: 1.12.0
+[0m16:06:18.735203 [info ] [MainThread]: python version: 3.12.9
+[0m16:06:18.735525 [info ] [MainThread]: python path: /Users/minhaz74692/Documents/Personal/Personal_Projects/Data-Engineering/DE-Project/E-Commerce/ecommerce-lakehouse-pipeline/dbt/.venv/bin/python
+[0m16:06:18.735772 [info ] [MainThread]: os info: macOS-26.3-arm64-arm-64bit
+[0m16:06:19.246485 [debug] [MainThread]: Spark adapter: Setting pyhive.hive logging to ERROR
+[0m16:06:19.246781 [debug] [MainThread]: Spark adapter: Setting thrift.transport logging to ERROR
+[0m16:06:19.246952 [debug] [MainThread]: Spark adapter: Setting thrift.protocol logging to ERROR
+[0m16:06:19.827240 [info ] [MainThread]: Using profiles dir at /Users/minhaz74692/.dbt
+[0m16:06:19.827525 [info ] [MainThread]: Using profiles.yml file at /Users/minhaz74692/.dbt/profiles.yml
+[0m16:06:19.827689 [info ] [MainThread]: Using dbt_project.yml file at /Users/minhaz74692/Documents/Personal/Personal_Projects/Data-Engineering/DE-Project/E-Commerce/ecommerce-lakehouse-pipeline/dbt/dbt_project.yml
+[0m16:06:19.827909 [error] [MainThread]: [[31mERROR[0m]: Encountered an error:
+Internal Error
+  Profile should not be None if loading profile completed
+[0m16:06:19.839091 [debug] [MainThread]: Resource report: {"command_name": "debug", "command_success": false, "command_wall_clock_time": 1.1942102, "process_in_blocks": "0", "process_kernel_time": 0.321929, "process_mem_max_rss": "232652800", "process_out_blocks": "0", "process_user_time": 1.624996}
+[0m16:06:19.839582 [debug] [MainThread]: Command `dbt debug` failed at 16:06:19.839517 after 1.19 seconds
+[0m16:06:19.839790 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x104742d50>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1116a56a0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x111673e00>]}
+[0m16:06:19.839994 [debug] [MainThread]: Flushing usage events
+[0m16:06:21.201088 [debug] [MainThread]: An error was encountered while trying to flush usage events
