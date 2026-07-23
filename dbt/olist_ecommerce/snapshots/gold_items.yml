@@ -1,0 +1,14 @@
+snapshots:
+  - name: dim_customer
+    relation: ref('gold_customer_current')
+    config:
+      schema: gold
+      database: "{{ target.catalog }}"
+      unique_key: customer_unique_id
+      strategy: check
+      check_cols:
+        - customer_zip_code_prefix
+        - customer_city
+        - customer_state
+      dbt_valid_to_current: "to_date('9999-12-31')"
+      hard_deletes: ignore
