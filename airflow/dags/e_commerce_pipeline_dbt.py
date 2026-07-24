@@ -33,9 +33,13 @@ def ecommerce_lakehouse_elt_pipeline_dbt():
     dq_silver = databricks_notebook_task(config.dq_orders, config.NOTEBOOKS[config.dq_orders])
 
     # Gold Transformation
-    dim_date = databricks_notebook_task(config.dim_date, config.NOTEBOOKS[config.dim_date])
-    dim_customer = databricks_notebook_task(config.dim_customer, config.NOTEBOOKS[config.dim_customer])
-    dim_product = databricks_notebook_task(config.dim_product, config.NOTEBOOKS[config.dim_product])
+    # dim_date = databricks_notebook_task(config.dim_date, config.NOTEBOOKS[config.dim_date])
+    # dim_customer = databricks_notebook_task(config.dim_customer, config.NOTEBOOKS[config.dim_customer])
+    # dim_product = databricks_notebook_task(config.dim_product, config.NOTEBOOKS[config.dim_product])
+    dim_date = dbt_bash_runs("dbt_dim_date", "dim_date")
+    dim_customer = dbt_bash_runs("dbt_dim_customer", "dim_customer")
+    dim_product = dbt_bash_runs("dbt_dim_product", "dim_product")
+    
     fact_sales = databricks_notebook_task(config.fact_sales, config.NOTEBOOKS[config.fact_sales])
 
     # Analytics- SQL 
